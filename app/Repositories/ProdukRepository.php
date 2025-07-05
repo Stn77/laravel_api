@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\Interfaces\ProdukRepositoryInterface;
+use App\Interfaces\ProdukRepositoryInterface;
 use App\Models\Produk;
 
 class ProdukRepository implements ProdukRepositoryInterface

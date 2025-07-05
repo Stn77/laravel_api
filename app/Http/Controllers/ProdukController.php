@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProductRequest;
 use App\Classes\ApiResponseClass;
 use App\Http\Requests\StoreProdukRequest;
 use App\Http\Resources\ProductResource;
-use App\Interfaces\Interfaces\ProdukRepositoryInterface as InterfacesProdukRepositoryInterface;
+use App\Interfaces\ProdukRepositoryInterface;
 use App\Models\Produk;
 use Illuminate\Support\Facades\DB;
-class ProductController extends Controller
+
+class ProdukController extends Controller
 {
+    private ProdukRepositoryInterface $productRepositoryInterface;
     
-    private InterfacesProdukRepositoryInterface $productRepositoryInterface;
-    
-    public function __construct(InterfacesProdukRepositoryInterface $productRepositoryInterface)
+    public function __construct(ProdukRepositoryInterface $productRepositoryInterface)
     {
         $this->productRepositoryInterface = $productRepositoryInterface;
     }
@@ -43,7 +44,7 @@ class ProductController extends Controller
     {
         $details =[
             'name' => $request->name,
-            'details' => $request->details
+            'jumlah' => $request->jumlah
         ];
         DB::beginTransaction();
         try{
@@ -82,7 +83,7 @@ class ProductController extends Controller
     {
         $updateDetails =[
             'name' => $request->name,
-            'details' => $request->details
+            'jumlah' => $request->jumlah
         ];
         DB::beginTransaction();
         try{
